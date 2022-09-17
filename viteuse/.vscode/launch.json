@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "vite",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "file": "/Users/ywm/learnProject/zhufengPoject/engineered/viteuse/index.html"
+    }
+  ]
+}
