@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "vite": "./bin/vite.js"
+    "vite60": "./bin/vite.js"
   },
   "keywords": [],
   "author": "",
