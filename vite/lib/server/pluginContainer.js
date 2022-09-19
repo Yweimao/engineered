@@ -2,7 +2,7 @@
  * @Author: yeweimao yeweimao@zhuanzhuan.com
  * @Date: 2022-09-17 20:48:43
  * @LastEditors: yeweimao yeweimao@zhuanzhuan.com
- * @LastEditTime: 2022-09-17 22:25:09
+ * @LastEditTime: 2022-09-18 10:26:50
  * @FilePath: /engineered/vite/lib/server/pluginContainer.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,19 +16,18 @@ const { normalizePath } = require("../utils");
 async function createPluginContainer({ plugins }) {
   const container = {
     async resolveId(path, importer) {
-      let resolveId = path;
+      let resoveId = path;
       for (const plugin of plugins) {
         if (!plugin.resolveId) continue;
         const result = await plugin.resolveId.call(null, path, importer);
         if (result) {
-          resolveId = result.id || result;
-          break;
+          resoveId = result.id || result;
         }
-      } // \ 变成 /
-      return { id: normalizePath(resolveId) };
+      }
+      return {
+        id: normalizePath(resoveId),
+      };
     },
-    load() {},
-    transform() {},
   };
   return container;
 }
