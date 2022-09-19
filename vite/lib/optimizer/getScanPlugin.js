@@ -2,8 +2,8 @@
  * @Author: yeweimao yeweimao@zhuanzhuan.com
  * @Date: 2022-09-17 18:00:48
  * @LastEditors: yeweimao yeweimao@zhuanzhuan.com
- * @LastEditTime: 2022-09-18 18:44:10
- * @FilePath: /viteuse/Users/ywm/learnProject/zhufengPoject/engineered/vite/lib/optimizer/getScanPlugin.js
+ * @LastEditTime: 2022-09-19 23:14:14
+ * @FilePath: /viteuse/Users/ywm/learnProject/engineered/vite/lib/optimizer/getScanPlugin.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 const fs = require("fs-extra");
@@ -32,10 +32,8 @@ async function getScanPlugin(config, depImports) {
     name: "scan", //依赖扫描插件
     setup(build) {
       //解析文件路径
-      debugger;
       build.onResolve({ filter: htmlTypesRE }, async ({ path, importer }) => {
         // 把任意路径转化成绝对路径
-        debugger;
         const resolved = await resolve(path, importer);
         if (resolved) {
           return {
@@ -45,6 +43,9 @@ async function getScanPlugin(config, depImports) {
         }
       });
       // //匹配任意文件
+
+      //path : 文件中引入模块的名字 import { createApp } from "vue"  path = vue
+      // importer: 这个模块从哪个文件引的或者说是哪个模块引入的这个vue  /Users/ywm/learnProject/engineered/viteuse/src/main.js
       build.onResolve({ filter: /.*/ }, async ({ path, importer }) => {
         // 把任意路径转化成绝对路径
         const resolved = await resolve(path, importer);
